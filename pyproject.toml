@@ -1,16 +1,41 @@
 [tool.poetry]
 name = "pydantic-json-patch"
 version = "0.1.0"
-description = ""
+description = "JsonPatch implementation for Pydantic"
 authors = ["Sergey Tsaplin <me@sergeytsaplin.com>"]
+maintainers = ["Sergey Tsaplin <me@sergeytsaplin.com>"]
+license = "MIT"
+packages = [
+    { include = "pydantic_json_patch"}
+]
+include = [
+    "pydantic_json_patch", "pydantic_json_patch/py.typed"
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 pydantic = "^1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
 black = "^22.6.0"
+mypy = "^0.961"
+pylint = "^2.14.4"
+isort = "^5.10.1"
+tox = "^3.25.1"
+
+[tool.mypy]
+strict = true
+plugins = "pydantic.mypy"
+
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.messages_control]
+disable = ["R0903", "R0913", "R0902",]
+extension-pkg-whitelist = "pydantic"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
